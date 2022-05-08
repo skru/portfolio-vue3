@@ -1,49 +1,27 @@
-<script setup>
+<script>
+import Nav from "@/components/Nav.vue"
+import Hero from "@/components/Hero.vue"
 
+export default {
+  components: {Nav, Hero},
+  data() {
+    return {}
+  },
+}
 </script>
 
 <template>
   <div class="columns is-multiline m-0">
+    <RouterLink to="/" class="column p-0 is-hidden-mobile ">
+      <Hero/>
+    </RouterLink> 
     <div class="column p-0">
-      <section class="hero is-info is-fullheight has-text-centered">
-        <div class="hero-head"></div>
-        <div class="hero-body">
-          <div class="container has-text-centered">
-            <p class="title">
-              Joseph Mohan
-            </p>
-            <p class="subtitle">
-              London/Kent UK
-            </p>
-          </div>
-        </div>
-        <div class="hero-foot"></div>
-      </section>
-    </div>
-    <div class="column">
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <RouterLink to="/" class="button is-info">Home</RouterLink>
-                <RouterLink to="/about" class="button is-light">About</RouterLink>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <section class="section">
-        <RouterView/>
-      </section>
+      <Nav/>
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component :is="Component"/>
+          </transition>
+        </router-view>
     </div>
   </div>
 </template>
@@ -52,7 +30,19 @@
 @import "bulma/css/bulma.min.css";
 
 html {
-  overflow-y: auto;
+  overflow: auto;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 
 </style>
