@@ -1,0 +1,20 @@
+@import "project-variables";
+@import "bulma-variables";
+@import "bulma/bulma.sass";
+
+html {
+  overflow: auto;
+}
+a {
+  color: $primary;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s ease-in;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

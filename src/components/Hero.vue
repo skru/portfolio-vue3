@@ -1,5 +1,6 @@
 <script>
 export default {
+  props: {size: {type: String}},
   data() {
     return {
       heroTitle: "Joseph Mohan",
@@ -11,15 +12,12 @@ export default {
 </script>
 
 <template>
-  <section class="hero is-primary is-fullheight has-text-centered">
+  <section class="hero is-primary" :class="size ? size : ''">
     <div class="hero-head"></div>
     <div class="hero-body">
-      <div class="container has-text-centered">
+      <div class="container">
         <h1 class="title is-1">
           {{ heroTitle }}
-        </h1>
-        <h1 class="subtitle is-3">
-          {{ heroSubtitle }}
         </h1>
         <p class="subtitle is-italic">
           {{ heroItalic }}

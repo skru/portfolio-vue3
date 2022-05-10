@@ -1,9 +1,14 @@
 <script>
 import Nav from "@/components/Nav.vue"
 import Hero from "@/components/Hero.vue"
+import Footer from "@/components/Footer.vue"
 
 export default {
-  components: {Nav, Hero},
+  components: {
+    Nav, 
+    Hero, 
+    Footer
+  },
   data() {
     return {}
   },
@@ -11,38 +16,32 @@ export default {
 </script>
 
 <template>
-  <div class="columns is-multiline m-0">
-    <RouterLink to="/" class="column p-0 is-hidden-mobile ">
-      <Hero/>
+  <div class="columns m-0">
+    <RouterLink to="/" class="column p-0 is-hidden-mobile">
+      <Hero size="is-fullheight"/>
     </RouterLink> 
-    <div class="column p-0">
-      <Nav/>
+    <div class="column p-0" id="page-wrapper">
+      <div id="page-content">
+        <Nav class="is-hidden-mobile"/>
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component"/>
           </transition>
         </router-view>
+      </div>
+      <Nav class="is-hidden-tablet"/>
+      <Footer/>
     </div>
   </div>
 </template>
 
-<style>
-@import "bulma/css/bulma.min.css";
-
-html {
-  overflow: auto;
+<style scoped>
+#page-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
+#page-content {
+  flex: 1;
 }
-
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-
 </style>
