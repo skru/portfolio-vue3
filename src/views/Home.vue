@@ -13,7 +13,7 @@ export default {
     <Hero size="is-medium" class="is-hidden-tablet"/>
     <section class="section">
         <div class="content is-large">
-          <h1>Hello World.</h1>
+          <h1>Hello World. <font-awesome-icon icon="user-secret" /></h1>
           <ul class="is-upper-roman">
             <li>A Decade of <b>Full Stack experiences.</b></li>
             <li>BSc (Hons) <b>Web Techology (1st),</b> 2019-2020.</li>
