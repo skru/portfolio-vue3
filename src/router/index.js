@@ -10,24 +10,24 @@ const router = createRouter({
       name: "home",
       component: () => import("@/views/Home.vue")
     },
-    {
-      path: "/tech",
-      name: "tech",
-      component: () => import("@/layouts/Tech.vue"),
-      children: [
-        {
-          path: "",
-          name: "index-tech",
-          component: () => import("@/views/Tech.vue")
-        },
-        {
-          path: "js",
-          name: "js",
-          meta: {tags: ["javascript", "vuejs"]},
-          component: () => import("@/views/tech/JS.vue")
-        }
-      ]
-    },
+    // {
+    //   path: "/tech",
+    //   name: "tech",
+    //   component: () => import("@/layouts/Tech.vue"),
+    //   children: [
+    //     {
+    //       path: "",
+    //       name: "index-tech",
+    //       component: () => import("@/views/Tech.vue")
+    //     },
+    //     {
+    //       path: "js",
+    //       name: "js",
+    //       meta: {tags: ["javascript", "vuejs"]},
+    //       component: () => import("@/views/tech/JS.vue")
+    //     }
+    //   ]
+    // },
     {
       path: "/projects",
       name: "projects",
@@ -44,12 +44,12 @@ const router = createRouter({
           meta: {tags: ["javascript", "vuejs"]},
           component: () => import("@/views/projects/HealthApp.vue")
         },
-        {
-          path: "php-bookstore",
-          name: "php-bookstore",
-          meta: {tags: ["javascript", "php"]},
-          component: () => import("@/views/projects/PHPBookstore.vue")
-        }
+        // {
+        //   path: "php-bookstore",
+        //   name: "php-bookstore",
+        //   meta: {tags: ["javascript", "php"]},
+        //   component: () => import("@/views/projects/PHPBookstore.vue")
+        // }
       ]
     },
     

@@ -20,7 +20,7 @@ export default {
           {{ heroTitle }}
         </h1>
         <p class="subtitle is-italic">
-          {{ heroItalic }}
+          <font-awesome-icon :icon="['fas', 'jedi']" /> {{ heroItalic }}
         </p>
       </div>
     </div>

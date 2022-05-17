@@ -35,13 +35,16 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/scss/bulma-variables.scss";
 #page-wrapper {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   flex-direction: column;
+  overflow: auto;
 }
 #page-content {
   flex: 1;
+  background: $light;
 }
 </style>

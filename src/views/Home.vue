@@ -1,27 +1,32 @@
 <script>
 import Hero from "@/components/Hero.vue"
+import MainLinks from "@/components/MainLinks.vue"
 
 export default {
   components: {
-    Hero
+    Hero,
+    MainLinks
   }
 }
 </script>
 
 <template>
   <div>
-    <Hero size="is-medium" class="is-hidden-tablet"/>
+    <Hero size="is-fullheight" class="is-hidden-tablet has-text-centered"/>
     <section class="section">
         <div class="content is-large">
-          <h1>Hello World. <font-awesome-icon icon="user-secret" /></h1>
+          <h1>
+            UX/WEB DEVELOPER.
+          </h1>
           <ul class="is-upper-roman">
             <li>A Decade of <b>Full Stack experiences.</b></li>
-            <li>BSc (Hons) <b>Web Techology (1st),</b> 2019-2020.</li>
-            <li>2 Years <b>post-graduate experience.</b></li>
+            <li>BSc (Hons) <b>Web Techology (1st),</b> 2018-2020.</li>
           </ul>
         </div>
         <div class="content">
-          <p>Proficient programmer and UX developer that understands the industry, customers and the small details in modern (and legacy) web apps. </p>
+          <p>I graduated from CCCU with a first class BSc degree in Web Technology in 2020. Prior to my studies I was a freelance full stack web developer, which I feel has given me an excellent grounding in a wide range of languages, development tools, software development lifecycle techniques and contributed to me achieving the highest grade in my studies. </p>  
+          <p>Since graduating I have been in employment primarily as a front-end UX developer, but the role has also required a broad range of other languages, knowledge of backend system architectures and deployment pipelines. Over the past year I have planned and implemented several large web apps with a small team.</p>
+          <p>As well as strong programming and technical knowledge, being a developer for several SMEs has awarded me valuable experience in customer relations and project management and has brought many challenges that have had to be overcome and dealt with in a professional manner, often with short deadlines and always to a high standard.</p>    
         </div>
     </section>
   </div>
