@@ -20,7 +20,7 @@ export default {
           {{ heroTitle }}
         </h1>
         <p class="subtitle is-italic is-tertiary p-4">
-          <font-awesome-icon :icon="['fas', 'jedi']" /> {{ heroItalic }}
+          <font-awesome-icon :icon="['fas', 'map-location-dot']" /> {{ heroItalic }}
         </p>
       </div>
     </div>
@@ -29,7 +29,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/project-variables";
 .hero {
   min-height: var(--vh) !important;
+}
+.title, .subtitle {
+  background: $secondary;
 }
 </style>

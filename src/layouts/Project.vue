@@ -1,44 +1,18 @@
 <script>
-import NavLink from "@/components/NavLink.vue"
+import NavChildren from "@/components/NavChildren.vue"
 import Pagination from "@/components/Pagination.vue"
-import { childRoutes } from "../composables/nav.js"
-import helpers from '@/mixins/helpers.js'
 
 export default {
   components: {
-    NavLink,
+    NavChildren,
     Pagination
-  },
-  mixins: [helpers],
-  data() {
-    return {
-      childRoutes: childRoutes(this.$router),
-      //pagination: pagination(this.$router),
-    }
-  },
-  watch: {
-    // '$route' () {
-    //   this.pagination = pagination(this.$router)     
-    // },
-    
-  },
+  }
 }
 </script>
 
 <template>
   <div id="layout-section">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-item is-flex-shrink-1">
-        <div class="buttons has-addons">
-          <NavLink :to="{name: route.name}" 
-            :type="'is-small'" 
-            v-for="(route, index) in childRoutes" 
-            :key="index">
-              {{splitText(route.name)}}
-          </NavLink>
-        </div>
-      </div>
-    </nav>
+    <NavChildren/>
     <section class="section">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">

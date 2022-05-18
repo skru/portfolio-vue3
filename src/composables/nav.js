@@ -11,7 +11,6 @@ export function childRoutes(router) {
 }
 
 export function pagination(router) {
-  console.log("XX", router)
   let childRoutes = getChildRoutes(router)
   let current = router.currentRoute.value.name
   if (isIndex(current)) {

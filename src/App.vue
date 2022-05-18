@@ -60,6 +60,7 @@ export default {
   flex-direction: column;
   overflow: auto;
   height: var(--vh);
+  scroll-snap-type: y proximity;
 }
 #page-content {
   flex: 1;

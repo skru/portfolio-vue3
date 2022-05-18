@@ -51,10 +51,10 @@ const router = createRouter({
           component: () => import("@/views/projects/PHPBookstore.vue")
         },
         {
-          path: "php-bookstore2",
-          name: "php-bookstore2",
+          path: "vue-calc",
+          name: "vue-calc",
           meta: {tags: ["javascript", "php"]},
-          component: () => import("@/views/projects/PHPBookstore.vue")
+          component: () => import("@/views/projects/VueCalc.vue")
         }
       ]
     },

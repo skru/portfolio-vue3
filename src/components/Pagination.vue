@@ -10,14 +10,13 @@ export default {
   watch: {
     '$route' () {
       this.pagination = pagination(this.$router)     
-    },
-    
-  },
+    }
+  }
 }
 </script>
 
 <template>
-  <section class="section py-5">
+  <section class="section pb-5">
     <nav class="is-flex is-justify-content-space-between" role="navigation" aria-label="pagination">
       <RouterLink class="button is-small is-fullwidth" :to="pagination.prev.path" v-if="pagination.prev">
         <font-awesome-icon :icon="['fas', 'arrow-left']" />

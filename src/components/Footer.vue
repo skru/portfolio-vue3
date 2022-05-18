@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       copy: `JOSEPH T MOHAN &copy; ${new Date().getFullYear()}`,
-      blurb: "Made with <a href='https://vuejs.org/'>Vue3</a> and <a href='https://bulma.io/'>Bulma</a>"
+      blurb: "<a href='https://github.com/skru/portfolio-vue3'>Made</a> with <a href='https://vuejs.org/'>Vue3</a> and <a href='https://bulma.io/'>Bulma</a>"
     }
   },
 }

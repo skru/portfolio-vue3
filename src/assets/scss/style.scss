@@ -1,6 +1,6 @@
 
 @import "project-variables";
-$danger: $tertiary;
+$danger: $secondary;
 @import "bulma-variables";
 @import "bulma/bulma.sass";
 @import "helpers";
@@ -10,7 +10,10 @@ html {
   overflow: auto;
 }
 a {
-  color: #FF6663;
+  color: $secondary;
+}
+hr {
+  background-color: $secondary;
 }
 
 .fade-enter-active,
@@ -26,14 +29,6 @@ a {
 .button.is-secondary {
   background: $secondary;
   color: $white;
-  :hover {
-    color: $white;
-  }
-}
-
-.is-tertiary {
-  background: $tertiary;
-  color: white;
   :hover {
     color: $white;
   }
