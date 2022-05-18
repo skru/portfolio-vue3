@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>PHP</h1>
+  <div class="content">
+    <h1>PHP Bookstore</h1>
 
   </div>
 </template>

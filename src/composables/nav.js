@@ -1,5 +1,9 @@
+let isIndex = (routeName) => {
+  return routeName.split("-")[0] !== "index"
+}
+
 let getChildRoutes = (router) => {
-  return router.currentRoute.value.matched[0].children.filter(route => route.name.split("-")[0] !== "index")
+  return router.currentRoute.value.matched[0].children.filter(route => isIndex(route.name))
 }
 
 export function childRoutes(router) {
@@ -7,12 +11,11 @@ export function childRoutes(router) {
 }
 
 export function pagination(router) {
+  console.log("XX", router)
   let childRoutes = getChildRoutes(router)
   let current = router.currentRoute.value.name
-  if (name.split("-")[0] !== "index") {
-    console.log("page", childRoutes, current)
+  if (isIndex(current)) {
     let pos = childRoutes.map(function(e) { return e.name; }).indexOf(current);
-    console.log("pos", pos)
     return {
       prev: pos >= 0 ? childRoutes[pos-1] : false,
       next: pos <= childRoutes.length ? childRoutes[pos+1] : false,

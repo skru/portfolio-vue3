@@ -1,6 +1,24 @@
+<script>
+import PageLinks from "@/components/PageLinks.vue"
+export default {
+  components: {PageLinks},
+  data() {
+      return {
+          links: [
+              { type: "site", link: "https://jmohan.me/apps/phc" },
+              { type: "github", link: "https://github.com/skru/HealthAppVue" },
+          ]
+      };
+  }
+}
+</script>
+
 <template>
   <div class="content">
-    <h1>Proactive Healthcare 2020-06</h1>
+    <h1 class="title">
+      Proactive Healthcare 2020-06
+    </h1>
+    <PageLinks :links="links"/>
     <p>
       Final year project of my Web Technology degree in which I achieved a high first.
       A distributed system using Vue.js as the frontend as a Progressive Web App (PWA). 

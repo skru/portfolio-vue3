@@ -12,14 +12,32 @@ export default {
   data() {
     return {}
   },
+  created: function() {
+    window.addEventListener('resize', this.calculateVh);
+    window.addEventListener('orientationchange', this.calculateVh);
+  },
+  destroyed: function() {
+    window.removeEventListener('resize', this.calculateVh);
+    window.removeEventListener('orientationchange', this.calculateVh);
+  },
+  mounted() {
+    this.calculateVh();
+  },
+  methods: {
+    calculateVh() {
+      // layout requires css vh to always be correct. Not relying on CSS 
+      var vh = window.innerHeight;
+      document.documentElement.style.setProperty('--vh', vh + 'px');
+    }
+  }
 }
 </script>
 
 <template>
   <div class="columns m-0">
-    <RouterLink to="/" class="column p-0 is-hidden-mobile">
+    <div class="column p-0 is-hidden-mobile">
       <Hero size="is-fullheight"/>
-    </RouterLink> 
+    </div> 
     <div class="column p-0" id="page-wrapper">
       <div id="page-content">
         <Nav class="is-hidden-mobile"/>
@@ -39,9 +57,9 @@ export default {
 @import "@/assets/scss/bulma-variables.scss";
 #page-wrapper {
   display: flex;
-  height: 100vh;
   flex-direction: column;
   overflow: auto;
+  height: var(--vh);
 }
 #page-content {
   flex: 1;

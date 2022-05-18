@@ -1,14 +1,16 @@
-$warning: #DB7F67;
 
 @import "project-variables";
+$danger: $tertiary;
 @import "bulma-variables";
 @import "bulma/bulma.sass";
+@import "helpers";
+
 
 html {
   overflow: auto;
 }
 a {
-  color: $primary;
+  color: #FF6663;
 }
 
 .fade-enter-active,
@@ -29,7 +31,10 @@ a {
   }
 }
 
-// .is-tertiary {
-//   background: $tertiary !important;
-//   color: white !important;
-// }
+.is-tertiary {
+  background: $tertiary;
+  color: white;
+  :hover {
+    color: $white;
+  }
+}

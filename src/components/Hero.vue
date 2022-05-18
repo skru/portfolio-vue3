@@ -16,10 +16,10 @@ export default {
     <div class="hero-head"></div>
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1">
+        <h1 class="title is-1 is-tertiary p-4">
           {{ heroTitle }}
         </h1>
-        <p class="subtitle is-italic">
+        <p class="subtitle is-italic is-tertiary p-4">
           <font-awesome-icon :icon="['fas', 'jedi']" /> {{ heroItalic }}
         </p>
       </div>
@@ -27,3 +27,9 @@ export default {
     <div class="hero-foot"></div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.hero {
+  min-height: var(--vh) !important;
+}
+</style>

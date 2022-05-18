@@ -1,11 +1,8 @@
 <script>
 import NavLink from "@/components/NavLink.vue"
-import MainLinks from "@/components/MainLinks.vue"
 export default {
   components: {
-    NavLink,
-    MainLinks
-  },
+    NavLink  },
   data() {
     return {
       siteLinks: [
@@ -23,7 +20,6 @@ export default {
   },
   mounted() {
     this.email = import.meta.env.VITE_EMAIL_ADDRESS
-    console.log("this.email", this.email)
   }
 }
 </script>
@@ -33,18 +29,17 @@ export default {
     <nav class="navbar is-flex is-justify-content-space-between" role="navigation" aria-label="main navigation">
       <div class="navbar-item">
         <div class="buttons">
-          <NavLink to="/" :type="'is-default'">home</NavLink>
-          <NavLink to="/projects" :type="'is-default'">projects</NavLink>
+          <NavLink :type="'is-default'" :to="link.link" v-for="link in siteLinks" :key="link.text">{{ link.text }}</NavLink>
         </div>
       </div>
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-secondary is-small" :href="link.link" v-for="link in exLinks" :key="link.text">
+          <a class="button is-tertiary is-small" :href="link.link" v-for="link in exLinks" :key="link.text">
             <span class="icon is-small">
               <font-awesome-icon :icon="link.icon" />
             </span>
           </a>
-          <a class="button is-secondary is-small" @click="emailVisible = !emailVisible">
+          <a class="button is-tertiary is-small" @click="emailVisible = !emailVisible">
             <span class="icon is-small">
               <font-awesome-icon :icon="['fas', 'at']" />
             </span>
@@ -57,7 +52,7 @@ export default {
       <div class="modal-content">
         <div class="notification is-primary has-text-centered">
           <button class="delete" @click="emailVisible = !emailVisible"></button>
-          <p class="subtitle">{{ email }}</p>
+          <a :href="`mailto:${email}`" ><p class="is-size-4">{{ email }}</p></a>
         </div>
       </div>
     </div>

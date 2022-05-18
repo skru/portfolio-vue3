@@ -44,12 +44,18 @@ const router = createRouter({
           meta: {tags: ["javascript", "vuejs"]},
           component: () => import("@/views/projects/HealthApp.vue")
         },
-        // {
-        //   path: "php-bookstore",
-        //   name: "php-bookstore",
-        //   meta: {tags: ["javascript", "php"]},
-        //   component: () => import("@/views/projects/PHPBookstore.vue")
-        // }
+        {
+          path: "php-bookstore",
+          name: "php-bookstore",
+          meta: {tags: ["javascript", "php"]},
+          component: () => import("@/views/projects/PHPBookstore.vue")
+        },
+        {
+          path: "php-bookstore2",
+          name: "php-bookstore2",
+          meta: {tags: ["javascript", "php"]},
+          component: () => import("@/views/projects/PHPBookstore.vue")
+        }
       ]
     },
     

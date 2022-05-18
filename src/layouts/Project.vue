@@ -1,21 +1,25 @@
 <script>
 import NavLink from "@/components/NavLink.vue"
-import { childRoutes, pagination } from "../composables/nav.js"
+import Pagination from "@/components/Pagination.vue"
+import { childRoutes } from "../composables/nav.js"
 import helpers from '@/mixins/helpers.js'
 
 export default {
-  components: {NavLink},
+  components: {
+    NavLink,
+    Pagination
+  },
   mixins: [helpers],
   data() {
     return {
       childRoutes: childRoutes(this.$router),
-      pagination: pagination(this.$router),
+      //pagination: pagination(this.$router),
     }
   },
   watch: {
-    '$route' () {
-      this.pagination = pagination(this.$router)     
-    },
+    // '$route' () {
+    //   this.pagination = pagination(this.$router)     
+    // },
     
   },
 }
@@ -42,24 +46,19 @@ export default {
           </transition>
         </router-view>
     </section>
-    <section class="section">
-      <nav class="is-flex is-justify-content-space-between" role="navigation" aria-label="pagination">
-        <RouterLink class="button is-small is-rounded" :to="pagination.prev.path" v-if="pagination.prev">
-          <font-awesome-icon :icon="['fas', 'arrow-left']" />
-        </RouterLink>
-        <RouterLink class="button is-small is-rounded is-pulled-right " :to="pagination.next.path" v-if="pagination.next">
-          <font-awesome-icon :icon="['fas', 'arrow-right']" />
-        </RouterLink>
-      </nav>
-    </section>
+    <Pagination/>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import "bulma/sass/utilities/mixins.sass";
 #layout-section {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 52px);
+  height: calc(100% - 52px); // navbar
+  @include mobile {
+    height: 100%;
+  }
   .section:nth-child(2) {
     flex: 1;
   }
