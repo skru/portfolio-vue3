@@ -1,19 +1,16 @@
-
-@import "project-variables";
-$danger: $secondary;
 @import "bulma-variables";
 @import "bulma/bulma.sass";
 @import "helpers";
 
-
 html {
-  overflow: auto;
+  overflow: hidden;
 }
+
 a {
-  color: $secondary;
-}
-hr {
-  background-color: $secondary;
+  color: #3344dd;
+  &:hover, &:focus, &:active {
+    color: #bb1122 !important;
+  }
 }
 
 .fade-enter-active,
@@ -26,10 +23,42 @@ hr {
   opacity: 0;
 }
 
-.button.is-secondary {
-  background: $secondary;
-  color: $white;
-  :hover {
-    color: $white;
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.from-top {
+  animation: 0.5s ease-out 0s 1 slideInFromTop;
+}
+
+.from-right {
+  animation: 0.5s ease-out 0s 1 slideInFromRight;
+}
+
+.mobile-app {
+  touch-action: manipulation;
+  scroll-snap-align: start;
+  max-width: 100%;
+  height: var(--vh);
+  .is-overlay {
+    @include mobile {
+      margin: 10px 0;
+    }
+  }
+  
+}
+

@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
     <div class="navbar-item is-flex-shrink-1">
       <div class="buttons has-addons">
         <NavLink :to="{name: route.name}" 

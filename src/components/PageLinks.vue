@@ -19,11 +19,11 @@ export default {
 </script>
 
 <template>
-  <div class="field is-grouped is-grouped-multiline">
+  <div class="field is-grouped  is-grouped-multiline">
     <div v-for="link in links" :key="link.type" class="control" >
       <a :href="link.link" class="tags has-addons">
-        <span class="tag is-white"><font-awesome-icon :icon="iconType(link)" /></span>
-        <span class="tag is-danger">{{link.type}}</span>
+        <span class="tag is-dark"><font-awesome-icon :icon="iconType(link)" /></span>
+        <span class="tag">{{link.type}}</span>
       </a>
     </div>
   </div>

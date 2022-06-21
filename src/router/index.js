@@ -10,26 +10,8 @@ const router = createRouter({
       name: "home",
       component: () => import("@/views/Home.vue")
     },
-    // {
-    //   path: "/tech",
-    //   name: "tech",
-    //   component: () => import("@/layouts/Tech.vue"),
-    //   children: [
-    //     {
-    //       path: "",
-    //       name: "index-tech",
-    //       component: () => import("@/views/Tech.vue")
-    //     },
-    //     {
-    //       path: "js",
-    //       name: "js",
-    //       meta: {tags: ["javascript", "vuejs"]},
-    //       component: () => import("@/views/tech/JS.vue")
-    //     }
-    //   ]
-    // },
     {
-      path: "/projects",
+      path: "/projects/",
       name: "projects",
       component: () => import("@/layouts/Project.vue"),
       children: [
@@ -41,20 +23,27 @@ const router = createRouter({
         {
           path: "health-app",
           name: "health-app",
-          meta: {tags: ["javascript", "vuejs"]},
           component: () => import("@/views/projects/HealthApp.vue")
         },
         {
-          path: "php-bookstore",
-          name: "php-bookstore",
-          meta: {tags: ["javascript", "php"]},
-          component: () => import("@/views/projects/PHPBookstore.vue")
+          path: "fm-synth",
+          name: "fm-synth",
+          component: () => import("@/views/projects/FMSynth.vue")
         },
         {
           path: "vue-calc",
           name: "vue-calc",
-          meta: {tags: ["javascript", "php"]},
           component: () => import("@/views/projects/VueCalc.vue")
+        },
+        {
+          path: "php-bookstore",
+          name: "php-bookstore",
+          component: () => import("@/views/projects/PHPBookstore.vue")
+        },
+        {
+          path: "dis-sys",
+          name: "dis-sys",
+          component: () => import("@/views/projects/TicketSystem.vue")
         }
       ]
     },

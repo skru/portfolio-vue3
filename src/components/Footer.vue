@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <footer class="footer">
+  <footer class="footer has-background-white">
     <div class="content is-flex is-justify-content-space-between is-align-items-center is-size-7">
       <div><p v-html="copy"></p></div>
       <div><p v-html="blurb"></p></div>

@@ -6,12 +6,12 @@ export default {
   data() {
     return {
       siteLinks: [
-        { text: "Home", link: "/" },
-        { text: "Projects", link: "/projects" },
+        { text: "HOME", link: "/" },
+        { text: "PROJECTS", link: "/projects" },
       ],
       exLinks: [
-        { link: "https://github.com/skru", icon: ['fab', 'github'] },
-        { link: "https://www.linkedin.com/in/josephmohan/", icon: ['fab', 'linkedin'] },
+        { name: "github", link: "https://github.com/skru", icon: ['fab', 'github'] },
+        { name: "linkedin", link: "https://www.linkedin.com/in/josephmohan/", icon: ['fab', 'linkedin'] },
       ],
       emailVisible: false,
       email: ""
@@ -25,7 +25,7 @@ export default {
 
 <template>
   <div>
-    <nav class="navbar is-flex is-justify-content-space-between" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-flex is-white is-justify-content-space-between" role="navigation" aria-label="main navigation">
       <div class="navbar-item">
         <div class="buttons">
           <NavLink :to="link.link" v-for="link in siteLinks" :key="link.text">{{ link.text }}</NavLink>
@@ -37,11 +37,13 @@ export default {
             <span class="icon is-small">
               <font-awesome-icon :icon="link.icon" />
             </span>
+            <span>{{ link.name }}</span>
           </a>
           <a class="button is-secondary is-small" @click="emailVisible = !emailVisible">
             <span class="icon is-small">
               <font-awesome-icon :icon="['fas', 'at']" />
             </span>
+            <span>email</span>
           </a>
         </div>
       </div>

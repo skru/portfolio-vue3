@@ -20,7 +20,7 @@ export default {
           </transition>
         </router-view>
     </section>
-    <Pagination/>
+    <Pagination class="is-hidden-desktop"/>
   </div>
 </template>
 

@@ -64,6 +64,5 @@ export default {
 }
 #page-content {
   flex: 1;
-  background: $light;
 }
 </style>

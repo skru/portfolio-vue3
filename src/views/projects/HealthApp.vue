@@ -1,7 +1,13 @@
 <script>
 import PageLinks from "@/components/PageLinks.vue"
+import AppView from "@/components/AppView.vue"
+import Overlay from "@/components/Overlay.vue"
 export default {
-  components: {PageLinks},
+  components: {
+    PageLinks,
+    AppView,
+    Overlay
+  },
   data() {
       return {
           links: [
@@ -16,8 +22,9 @@ export default {
 <template>
   <div class="content">
     <h1 class="title">
-      Proactive Healthcare 2020-06
+      Proactive Healthcare
     </h1>
+    <p class="subtitle">2020</p>
     <PageLinks :links="links"/>
     <hr>
     <p>
@@ -40,4 +47,12 @@ export default {
       scalable distributed system intended for use by the general public.
     </p>
   </div>
+
+  <!-- <AppView>
+  
+  </AppView>
+  
+  <Overlay>
+    
+  </Overlay> -->
 </template>
