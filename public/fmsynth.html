@@ -1,0 +1,529 @@
+<!doctype html>
+
+<head>
+    <meta charset='utf8'>
+    <title>SYNTH</title>
+    <meta name="viewport" content="width=device-width,
+    user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link href='http://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div id='wrapper'>
+
+        <div id='canvas-wrapper' onclick>
+        <div id='info'><p>FM synthesizer.<br>hit trigger!</p></div>
+            <canvas class="visualizer"></canvas>
+        </div>
+
+        <div id='car-wrapper'>
+            <h4 id='car-header'>CARRIER</h4>
+            <select id='carmenu'>
+                <option value='square'>square</option>
+                <option value='sine'>sine</option>
+                <option value='triangle'>triangle</option>
+                <option value='sawtooth'>saw</option>
+            </select>
+
+            <label id='car-label' for='carFreq'>frequency</label>
+            <input class='horizontal-slide-big' id='carFreq' type="range" min="5" max="2000" value="440" step="all">
+
+            <label class='cardetune-label' for='cardetune'>detune</label>
+            <input class='horizontal-slide' id='cardetune' type="range" min="0" max="100" value="50" step="all">
+            <label class='cargain-label' for='cargain'>gain</label>
+            <input class='horizontal-slide' id='cargain' type="range" min="0.0" max="0.2" value="0.3" step="0.01">
+            <label class='carattack-label' for='carattack'>attack</label>
+            <input class='horizontal-slide' id='carattack' type="range" min="0.1" max="10" value="0.1" step="all">
+            <label class='cardecay-label' for='cardecay'>release</label>
+            <input class='horizontal-slide' id='cardecay' type="range" min="0.1" max="10" value="6" step="all">
+        </div>
+
+        <div id='mod-wrapper'>
+            <h4 id='mod-header'>MODULATOR</h4>
+            <select id='modmenu'>
+              <option value='sine'>sine</option>
+                <option value='square'>square</option>
+                
+                <option value='triangle'>triangle</option>
+                <option value='sawtooth'>saw</option>
+            </select>
+
+            <label id='mod-label' for='modFreq'>frequency</label>
+            <input class='horizontal-slide-big' id='modFreq' type="range" min="0.01" max="100" value="60" step="all">
+
+            <label class='moddetune-label' for='moddetune'>detune</label>
+            <input class='horizontal-slide' id='moddetune' type="range" min="0" max="1000" value="500" step="all">
+            <label class='modgain-label' for='modgain'>gain</label>
+            <input class='horizontal-slide' id='modgain' type="range" min="0" max="900" value="100" step="all">
+            <label class='carattack-label' for='carattack'>attack</label>
+            <input class='horizontal-slide' id='modattack' type="range" min="0.1" max="10" value="2" step="all">
+            <label class='moddecay-label' for='moddecay'>release</label>
+            <input class='horizontal-slide' id='moddecay' type="range" min="0.1" max="10" value="6" step="all">
+        </div>
+
+        <div id='start'><span><h4>TRIGGER</h4></span></div>
+
+    </div>
+
+
+
+    <style>
+        * {
+            margin: 0 auto;
+            color: rgb(0, 224, 7);
+            text-align: center;
+            font-family: 'Muli', sans-serif;
+            font-size: 16px;
+            
+
+        }
+        
+        #oscilloscope {
+            width: 400px;
+            height: 200px;
+        }
+
+
+        #wrapper {
+            
+            position: absolute;
+            height: 100%;
+            width: 100%;
+  
+            background: black;
+
+
+        }
+        #car-wrapper {
+            left: 0.5;
+            width: 49%;
+            position: absolute;
+            height: 59%;
+            border: 1px solid rgb(0, 224, 7);
+            
+
+        }
+        #mod-wrapper {
+            left: 50.5%;
+            width: 49%;
+            position: absolute;
+            height: 59%;
+            border: 1px solid rgb(0, 224, 7);
+            
+        }
+        #car-header,
+        #mod-header {
+            position: absolute;
+            text-align: center;
+            
+            height: 10%;
+            overflow: hidden;
+            background: black;
+            width: 75%;
+            left: 0;
+        }
+
+
+        #carmenu,
+        #modmenu {
+            position: absolute;
+            top: 0;
+            height: 10%;
+            left: 75%;
+            width: 25%;
+            background: black;
+            color: rgb(0, 224, 7);
+            border: none;
+        }
+        #car-label,
+        #mod-label {
+          
+            
+            position: absolute;
+            left: 0;
+            top: 10%;
+            width: 100%;
+            z-index: 0;
+            
+            height: 5%;
+        }
+        #carFreq,
+        #modFreq {
+          position:absolute;
+          height: 35%;
+          top: 15%;
+          left: 0;
+          width: 100%;
+        }
+        .cardetune-label,
+        .moddetune-label {
+          
+            left: 0;
+            position: absolute;
+            top: 50%;
+            height: 5%;
+            width: 50%;
+            z-index: 0;
+        }
+        #cardetune,
+        #moddetune {
+            position: absolute;
+            top: 55%;
+            left: 0;
+            height: 20%;
+            width: 50%;
+            background: transparent;
+        }
+        .cargain-label,
+        .modgain-label {
+            left: 0;
+            position: absolute;
+            top: 75%;
+            height: 5%;
+            width: 50%;
+            z-index: 0;
+        }
+        #cargain,
+        #modgain {
+            position: absolute;
+            top: 80%;
+            left: 0;
+            width: 50%;
+            height: 20%;
+            background: transparent;
+        }
+        .carattack-label,
+        .modattack-label {
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            height: 5%;
+            width: 50%;
+            z-index: 0;
+        }
+        #carattack,
+        #modattack {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            width: 50%;
+            height: 20%;
+        }
+        .cardecay-label,
+        .moddecay-label {
+            left: 50%;
+            position: absolute;
+            top: 75%;
+            height: 5%;
+            text-align: left;
+            width: 50%;
+            z-index: 0;
+        }
+        #cardecay,
+        #moddecay {
+            position: absolute;
+            top: 80%;
+            height: 20%;
+            left: 50%;
+            width: 50%;
+        }
+        #canvas-wrapper {
+            width: 100%;
+            background: rgb(0, 0, 0);
+            height: 20%;
+        }
+        body {
+            margin: 0 auto;
+        }
+        #start {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            margin: 0;
+            background: black;
+          
+            width: 100%;
+            height: 20%;
+            top: 80%;
+            
+            z-index: 10;
+   
+        }
+        
+        .horizontal-slide {
+            -webkit-appearance: none;
+            background: transparent;
+           
+        }
+        .horizontal-slide::-webkit-slider-runnable-track {
+            background: transparent;
+        }
+        .horizontal-slide::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            background: rgb(0, 224, 7);
+            opacity: 0.3;
+            height: 10vh;
+            width: 5vw;
+           
+        }
+
+
+        .horizontal-slide:focus {
+            outline: none;
+        }
+        .horizontal-slide:focus::-webkit-slider-runnable-track {
+            background: transparent;
+        }
+        .horizontal-slide-big {
+            -webkit-appearance: none;
+            background: transparent;
+           
+        }
+        .horizontal-slide-big::-webkit-slider-runnable-track {
+            background: transparent;
+      
+
+        }
+        .horizontal-slide-big::-webkit-slider-thumb {
+          
+            -webkit-appearance: none;
+            background: rgb(0, 224, 7);
+            opacity: 0.3;
+            top: 200%;
+            height: 20vh;
+            width: 8vw;
+           
+       
+        }
+
+        .horizontal-slide-big:focus {
+            outline: none;
+        }
+        .horizontal-slide-big:focus::-webkit-slider-runnable-track {
+            background: transparent;
+        }
+
+        #carvert {
+            position: absolute;
+            top: 10%;
+            left: 0;
+            width: 40%;
+            background: transparent;
+            z-index: 3;
+            height: 90%;
+            overflow: hidden;
+
+        }
+        #car-slide {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          height: 5%;
+          width: 40%;
+          background: grey;
+          z-index: 2;
+
+        }
+        #info {
+          display: flex;
+            align-items: center;
+        }
+    </style>
+
+
+
+    <script>
+        function createAudioContext() {
+            var contextClass = (window.AudioContext ||
+                window.webkitAudioContext ||
+                window.mozAudioContext ||
+                window.oAudioContext);
+            if (contextClass) {
+                return new contextClass();
+            } else {
+                alert("Sorry. WebAudio API not supported. Try using the Google Chrome or Safari browser.");
+                return null;
+            }
+        }
+        var ac = new createAudioContext();
+
+        var isOn = false;
+
+        var Synth = function() {
+
+            this.out = ac.destination;
+
+            this.osc = ac.createOscillator();
+            this.osc.type = document.getElementById('carmenu').value;
+
+            this.osc.frequency.value = document.getElementById('carFreq').value;
+            this.osc.detune.value = document.getElementById('cardetune').value;
+            this.oscGain = ac.createGain();
+            this.peakvalue = document.getElementById('cargain').value;
+            this.oscAttack = document.getElementById('carattack').value;
+            this.oscDecay = document.getElementById('cardecay').value;
+
+            this.oscGain.gain.value = 0.0;
+            this.oscGain.gain.setTargetAtTime(this.peakvalue, 0, this.oscAttack);
+
+            this.mod = ac.createOscillator();
+            this.mod.type = document.getElementById('modmenu').value;
+            this.mod.frequency.value = document.getElementById('modFreq').value;
+            this.mod.detune.value = document.getElementById('moddetune').value;
+            this.modGain = ac.createGain();
+            this.modpeakvalue = document.getElementById('modgain').value;
+            this.modAttack = document.getElementById('modattack').value;
+            this.modDecay = document.getElementById('moddecay').value;
+
+            this.modGain.gain.value = 0.0;
+            this.modGain.gain.setTargetAtTime(this.modpeakvalue, 0, this.modAttack);
+
+            this.analyser = ac.createAnalyser();
+
+            this.analyser.fftSize = 1024;
+            this.bufferLength = this.analyser.fftSize;
+            this.dataArray = new Uint8Array(this.bufferLength);
+            this.canvas = document.querySelector('.visualizer');
+            this.canvasCtx = this.canvas.getContext("2d");
+            this.canvas.width = document.getElementById('canvas-wrapper').offsetWidth;
+            this.canvas.height = document.getElementById('canvas-wrapper').offsetHeight;
+            this.canvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+            this.mod.connect(this.modGain);
+            this.osc.connect(this.oscGain);
+            
+            this.masterGain = ac.createGain();
+
+            this.modGain.connect(this.osc.frequency);
+            this.oscGain.connect(this.masterGain);
+            
+            this.oscGain.connect(this.analyser);
+            this.oscGain.connect(this.out);
+
+
+            this.osc.start(0);
+            this.mod.start(0);
+        }
+
+
+
+
+        Synth.prototype.draw = function() {
+            drawVisual = requestAnimationFrame(synth.draw);
+            synth.analyser.getByteTimeDomainData(synth.dataArray);
+            synth.canvasCtx.fillStyle = 'rgb(0, 0, 0)';
+            synth.canvasCtx.fillRect(0, 0, synth.canvas.width, synth.canvas.height);
+            synth.canvasCtx.lineWidth = 4;
+            synth.canvasCtx.strokeStyle = 'rgb(0, 224, 7)';
+            synth.canvasCtx.beginPath();
+            var sliceWidth = synth.canvas.width * 1.0 / synth.bufferLength;
+            var x = 0;
+            for (var i = 0; i < synth.bufferLength; i++) {
+
+                var v = synth.dataArray[i] / 128.0;
+                var y = v * synth.canvas.height / 2;
+
+                if (i === 0) {
+                    synth.canvasCtx.moveTo(x, y);
+                } else {
+                    synth.canvasCtx.lineTo(x, y);
+                }
+
+                x += sliceWidth;
+            }
+            synth.canvasCtx.lineTo(synth.canvas.width, synth.canvas.height / 2);
+            synth.canvasCtx.stroke();
+        };
+
+
+        start.onmousedown = function(event) {
+            event.preventDefault();
+            if (isOn === true) {
+                synth.osc.stop(0);
+                synth.mod.stop(0);
+                delete synth;
+                synth = new Synth();
+                synth.draw();
+            } else {
+                document.getElementById('info').style.display = 'none';
+                synth = new Synth();
+                synth.draw();
+                isOn = true;
+            }
+        }
+        start.onmouseup = function(event) {
+            event.preventDefault();
+ 
+          synth.oscGain.gain.setTargetAtTime(0.0, ac.currentTime + parseFloat(synth.oscAttack), synth.oscDecay);
+          synth.modGain.gain.setTargetAtTime(0.0, ac.currentTime + parseFloat(synth.modAttack), synth.modDecay);
+        }
+
+        start.ontouchstart = function(event) {
+            event.preventDefault();
+            if (isOn === true) {
+                synth.osc.stop(0);
+                synth.mod.stop(0);
+                delete synth;
+                synth = new Synth();
+                synth.draw();
+            } else {
+                document.getElementById('info').style.display = 'none';
+                synth = new Synth();
+                synth.draw();
+                isOn = true;
+            }
+        }
+        start.ontouchend = function(event) {
+            event.preventDefault();
+          synth.oscGain.gain.setTargetAtTime(0.0, ac.currentTime + parseFloat(synth.oscAttack), synth.oscDecay);
+          synth.modGain.gain.setTargetAtTime(0.0, ac.currentTime + parseFloat(synth.modAttack), synth.modDecay);
+        }
+
+
+
+        document.getElementById('carFreq').addEventListener('input', function(event) {
+            event.preventDefault();
+            synth.osc.frequency.value = this.value;
+        });
+
+        document.getElementById('cardetune').addEventListener('input', function(event) {
+            event.preventDefault();
+            synth.osc.detune.value = Math.pow(2, 1 / 12) * this.value;
+        });
+
+        document.getElementById('cargain').addEventListener('input', function(event) {
+            event.preventDefault();
+            synth.oscGain.gain.value = this.value;
+        });
+
+        document.getElementById('carmenu').addEventListener('input', function(event) {
+            event.preventDefault();
+            synth.osc.type = this.value;
+        });
+
+        document.getElementById('modFreq').addEventListener('input', function(event) {
+            event.preventDefault();
+            synth.mod.frequency.value = this.value;
+        });
+
+        document.getElementById('moddetune').addEventListener('input', function(event) {
+            event.preventDefault();
+            synth.mod.detune.value = Math.pow(2, 1 / 12) * this.value;
+        });
+
+        document.getElementById('modgain').addEventListener('input', function(event) {
+            event.preventDefault();
+            synth.modGain.gain.value = this.value;
+        });
+
+        document.getElementById('modmenu').addEventListener('input', function(event) {
+            event.preventDefault();
+            synth.mod.type = this.value;
+        });
+    </script>
+
+
+</body>
